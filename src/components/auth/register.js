@@ -10,7 +10,7 @@ const form = reduxForm({
 
 const renderField = field => (
   <div>
-    <input className="form-control" {...field.input} />
+    <input className="form-control" {...field.input} type={field.type} />
     {field.touched && field.error && <div className="error">{field.error}</div>}
   </div>
 );
