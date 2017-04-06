@@ -11,7 +11,7 @@ import { AUTH_USER, AUTH_ERROR, UNAUTH_USER, FORGOT_PASSWORD_REQUEST, RESET_PASS
 // TO-DO: Add expiration to cookie
 export function loginUser({ email, password }) {
   return function (dispatch) {
-    axios.post(`${API_URL}/auth/login`, { email, password })
+    axios.post(`${API_URL}/login`, { email, password })
     .then((response) => {
       cookie.save('token', response.data.token, { path: '/' });
       cookie.save('user', response.data.user, { path: '/' });
@@ -26,7 +26,7 @@ export function loginUser({ email, password }) {
 
 export function registerUser({ email, firstName, lastName, password }) {
   return function (dispatch) {
-    axios.post(`${API_URL}/auth/register`, { email, firstName, lastName, password })
+    axios.post(`${API_URL}/register`, { email, firstName, lastName, password })
     .then((response) => {
       cookie.save('token', response.data.token, { path: '/' });
       cookie.save('user', response.data.user, { path: '/' });
@@ -86,7 +86,7 @@ export function protectedTest() {
     axios.get(`${API_URL}/protected`, {
       headers: { Authorization: cookie.load('token') },
     })
-    .then((response) => {
+    .then((response) => {+
       dispatch({
         type: PROTECTED_TEST,
         payload: response.data.content,
