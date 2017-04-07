@@ -6,13 +6,19 @@ class FooterTemplate extends Component {
   renderLinks() {
     if (this.props.authenticated) {
       return [
-        <li key={1}>
+        <li key={`${1}header`}>
           <Link to="/">Home</Link>
         </li>,
-        <li key={2}>
-          <Link to="dashboard">Dashboard</Link>
+        <li key={`${2}header`}>
+          <Link to="dashboard">Companies</Link>
         </li>,
-        <li key={3}>
+        <li key={`${3}header`}>
+          <Link to="dashboard">Templates</Link>
+        </li>,
+        <li key={`${4}header`}>
+          <Link to="dashboard">Logs</Link>
+        </li>,
+        <li key={`${5}header`}>
           <Link to="logout">Logout</Link>
         </li>,
       ];
@@ -46,7 +52,7 @@ class FooterTemplate extends Component {
                   {this.renderLinks()}
                 </ul>
               </nav>
-              <p className="copyright">© {year}, Your Site. All Rights Reserved.</p>
+              <p className="copyright">© {year}, Mailer-CRM. All Rights Reserved.</p>
             </div>
           </div>
         </div>

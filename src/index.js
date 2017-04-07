@@ -7,6 +7,7 @@ import reduxThunk from 'redux-thunk';
 import cookie from 'react-cookie';
 import routes from './routes';
 import reducers from './reducers/index';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 // import ReactGA from 'react-ga';
 import { AUTH_USER } from './actions/types';
 
@@ -33,6 +34,8 @@ if (token) {
 // <Router history={browserHistory} routes={routes} onUpdate={logPageView} />
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory} routes={routes}/>
+    <MuiThemeProvider>
+      <Router history={browserHistory} routes={routes}/>
+    </MuiThemeProvider>
   </Provider>,
   document.querySelector('.wrapper'));

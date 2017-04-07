@@ -2,57 +2,27 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import cookie from 'react-cookie';
-import { protectedTest } from '../../actions/auth';
+// import { protectedTest } from '../../actions/auth';
+import { fetchCompanies } from '../../../actions/companies';
 
 class Dashboard extends Component {
 
   constructor(props) {
     super(props);
 
-    this.props.protectedTest();
+    // this.props.protectedTest();
   }
 
-  isRole(roleToCheck, toRender) {
-    const userRole = cookie.load('user').role;
-
-    if (userRole == roleToCheck) {
-      return toRender;
-    }
-
-    return false;
-  }
-
-  adminMenu() {
-    return (
-      <div className="admin-menu">
-        <Link to="/admin">Admin</Link>
-      </div>
-    );
-  }
-
-  ownerMenu() {
-    return (
-      <div className="trainer-menu">
-        Owner menu coming soon.
-      </div>
-    );
-  }
-
-  clientMenu() {
-    return (
-      <div className="client-menu">
-        Client menu coming soon.
-      </div>
-    );
-  }
+  // <Link to="/dashboard/inbox">Inbox</Link>
+  // <span> | </span>
+  // <Link to="/profile/edit">Edit Profile</Link>
+  // <span> | </span>
+  // <Link to="/billing/settings">Billing</Link>
 
   render() {
     return (
       <div>
-        <Link to="/dashboard/inbox">Inbox</Link> | <Link to="/profile/edit">Edit Profile</Link> | <Link to="/billing/settings">Billing</Link>
-        {this.isRole('Admin', this.adminMenu())}
-        {this.isRole('Owner', this.ownerMenu())}
-        {this.isRole('Client', this.clientMenu())}
+        <h1>Mailer-CRM</h1>
         <p>{this.props.content}</p>
       </div>
     );

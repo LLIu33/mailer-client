@@ -38,3 +38,10 @@ export const CREATE_CUSTOMER = 'create_customer',
   UPDATE_BILLING = 'update_billing',
   BILLING_ERROR = 'billing_error',
   CHANGE_SUBSCRIPTION = 'change_subscription';
+
+  //= =====================
+  // Company Actions
+  //= =====================
+export const  COMPANY_ERROR = 'company_error',
+  CREATE_COMPANY = 'create_company',
+  FETCH_COMPANY = 'fetch_company';
