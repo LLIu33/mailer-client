@@ -20,9 +20,9 @@ import ResetPassword from './components/auth/reset_password';
 // Import dashboard pages
 import Dashboard from './components/dashboard/dashboard';
 import ViewProfile from './components/dashboard/profile/view-profile';
-import Inbox from './components/dashboard/messaging/inbox';
-import Conversation from './components/dashboard/messaging/conversation';
-import ComposeMessage from './components/dashboard/messaging/compose-message';
+// import Inbox from './components/dashboard/messaging/inbox';
+// import Conversation from './components/dashboard/messaging/conversation';
+// import ComposeMessage from './components/dashboard/messaging/compose-message';
 import BillingSettings from './components/billing/settings';
 
 // Import billing pages
@@ -54,9 +54,6 @@ export default (
 
     <Route path="dashboard">
       <IndexRoute component={RequireAuth(Dashboard)} />
-      <Route path="inbox" component={RequireAuth(Inbox)} />
-      <Route path="conversation/new" component={RequireAuth(ComposeMessage)} />
-      <Route path="conversation/view/:conversationId" component={RequireAuth(Conversation)} />
     </Route>
 
     <Route path="*" component={NotFoundPage} />

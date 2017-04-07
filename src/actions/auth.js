@@ -24,9 +24,9 @@ export function loginUser({ email, password }) {
   };
 }
 
-export function registerUser({ email, firstName, lastName, password }) {
+export function registerUser({ email, userName, password }) {
   return function (dispatch) {
-    axios.post(`${API_URL}/register`, { email, firstName, lastName, password })
+    axios.post(`${API_URL}/register`, { email, userName, password })
     .then((response) => {
       cookie.save('token', response.data.token, { path: '/' });
       cookie.save('user', response.data.user, { path: '/' });
@@ -40,12 +40,13 @@ export function registerUser({ email, firstName, lastName, password }) {
 }
 
 export function logoutUser(error) {
+  console.log('logoutUser auth React action');
   return function (dispatch) {
     dispatch({ type: UNAUTH_USER, payload: error || '' });
     cookie.remove('token', { path: '/' });
     cookie.remove('user', { path: '/' });
 
-    window.location.href = `${CLIENT_ROOT_URL}/login`;
+    // window.location.href = `${CLIENT_ROOT_URL}/login`;
   };
 }
 

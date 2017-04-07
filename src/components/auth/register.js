@@ -59,13 +59,9 @@ class Register extends Component {
       <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
         {this.renderAlert()}
         <div className="row">
-          <div className="col-md-6">
-            <label>First Name</label>
-            <Field name="firstName" className="form-control" component={renderField} type="text" />
-          </div>
-          <div className="col-md-6">
-            <label>Last Name</label>
-            <Field name="lastName" className="form-control" component={renderField} type="text" />
+          <div className="col-md-12">
+            <label>Username</label>
+            <Field name="userName" className="form-control" component={renderField} type="text" />
           </div>
         </div>
         <div className="row">
