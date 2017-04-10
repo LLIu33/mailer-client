@@ -2,35 +2,37 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import cookie from 'react-cookie';
-// import { protectedTest } from '../../actions/auth';
-import { fetchCompanies } from '../../../actions/companies';
+
+import { fetchCustomers } from '../../actions/customers';
+import CustomersTable from '../customers/customers-table';
 
 class Dashboard extends Component {
-
-  constructor(props) {
-    super(props);
-
-    // this.props.protectedTest();
+  componentWillMount() {
+    // Fetch inbox (conversations involving current user)
+    this.props.fetchCustomers();
   }
 
-  // <Link to="/dashboard/inbox">Inbox</Link>
-  // <span> | </span>
-  // <Link to="/profile/edit">Edit Profile</Link>
-  // <span> | </span>
-  // <Link to="/billing/settings">Billing</Link>
+  renderCustomerTable() {
+    if (this.props.customers && this.props.customers.length > 0) {
+      return (
+        <CustomersTable customers={this.props.customers}></CustomersTable>
+      );
+    }
+    return <div>You do not have any active customers.</div>;
+  }
 
   render() {
     return (
       <div>
         <h1>Mailer-CRM</h1>
-        <p>{this.props.content}</p>
+        { this.renderCustomerTable() }
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return { content: state.auth.content };
+  return { customers: state.customer.customers };
 }
 
-export default connect(mapStateToProps, { protectedTest })(Dashboard);
+export default connect(mapStateToProps, { fetchCustomers })(Dashboard);

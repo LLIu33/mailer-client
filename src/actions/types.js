@@ -34,14 +34,8 @@ export const SEND_CONTACT_FORM = 'send_contact_form',
 //= =====================
 export const CREATE_CUSTOMER = 'create_customer',
   FETCH_CUSTOMER = 'fetch_customer',
+  FETCH_CUSTOMERS = 'fetch_customers',
   CANCEL_SUBSCRIPTION = 'cancel_subscription',
   UPDATE_BILLING = 'update_billing',
   BILLING_ERROR = 'billing_error',
   CHANGE_SUBSCRIPTION = 'change_subscription';
-
-  //= =====================
-  // Company Actions
-  //= =====================
-export const  COMPANY_ERROR = 'company_error',
-  CREATE_COMPANY = 'create_company',
-  FETCH_COMPANY = 'fetch_company';
