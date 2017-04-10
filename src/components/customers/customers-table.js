@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import IconButton from 'material-ui/IconButton';
+import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
+import DeleteIcon from 'material-ui/svg-icons/action/delete';
+import EmailIcon from 'material-ui/svg-icons/Communication/email';
 
 class CustomersTable extends Component {
 
@@ -11,36 +16,38 @@ class CustomersTable extends Component {
     };
 
     return (
-      <div className="customers-table">
-        <div className="col-md-4 col-sm-6 col-xs-12 float-shadow">
-          <table className="company-table striped">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Website</th>
-                <th>Email</th>
-                <th>Contact</th>
-                <th className="action-column"></th>
-              </tr>
-            </thead>
-            <tbody>
-            {this.props.customers.map(company =>
-              <tr key={company.id}>
-                <td>{company.company_name}</td>
-                <td><a href={`company.company_website`}>{company.company_website}</a></td>
-                <td>{company.contact_email}</td>
-                <td>{company.contact_person}</td>
-                <td class="action-column">
-                  <button title="Edit">mode_edit</button>
-                  <button title="Send Email">email</button>
-                  <button title="Delete">delete</button>
-                </td>
-              </tr>
-            )}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHeaderColumn>Name</TableHeaderColumn>
+            <TableHeaderColumn>Website</TableHeaderColumn>
+            <TableHeaderColumn>Email</TableHeaderColumn>
+            <TableHeaderColumn>Contact</TableHeaderColumn>
+            <TableHeaderColumn className="action-column"></TableHeaderColumn>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+        {this.props.customers.map(company =>
+          <TableRow key={company.id}>
+            <TableRowColumn>{company.company_name}</TableRowColumn>
+            <TableRowColumn><Link to={`company.company_website`}>{company.company_website}</Link></TableRowColumn>
+            <TableRowColumn>{company.contact_email}</TableRowColumn>
+            <TableRowColumn>{company.contact_person}</TableRowColumn>
+            <TableRowColumn className="action-column">
+              <IconButton>
+                <EditIcon />
+              </IconButton>
+              <IconButton>
+                <EmailIcon />
+              </IconButton>
+              <IconButton>
+                <DeleteIcon />
+              </IconButton>
+            </TableRowColumn>
+          </TableRow>
+        )}
+        </TableBody>
+      </Table>
     );
   }
 }
