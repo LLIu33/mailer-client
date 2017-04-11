@@ -13,7 +13,7 @@ class HeaderTemplate extends Component {
           <Link to="dashboard">Companies</Link>
         </li>,
         <li key={`${3}header`}>
-          <Link to="dashboard">Templates</Link>
+          <Link to="templates">Templates</Link>
         </li>,
         <li key={`${4}header`}>
           <Link to="dashboard">Logs</Link>

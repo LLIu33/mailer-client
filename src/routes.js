@@ -34,6 +34,8 @@ import AdminDashboard from './components/admin/dashboard';
 // Import higher order components
 import RequireAuth from './components/auth/require_auth';
 
+import TemplatesList from './components/templates/templates-list'
+
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={HomePage} />
@@ -49,6 +51,7 @@ export default (
     <Route path="billing/settings" component={RequireAuth(BillingSettings)} />
 
     <Route path="profile" component={RequireAuth(ViewProfile)} />
+    <Route path="templates" component={RequireAuth(TemplatesList)} />
 
     <Route path="admin" component={RequireAuth(AdminDashboard)} />
 

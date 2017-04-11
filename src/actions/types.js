@@ -35,7 +35,15 @@ export const SEND_CONTACT_FORM = 'send_contact_form',
 export const CREATE_CUSTOMER = 'create_customer',
   FETCH_CUSTOMER = 'fetch_customer',
   FETCH_CUSTOMERS = 'fetch_customers',
-  CANCEL_SUBSCRIPTION = 'cancel_subscription',
+  CUSTOMER_ERROR = 'customer_error',
   UPDATE_BILLING = 'update_billing',
   BILLING_ERROR = 'billing_error',
   CHANGE_SUBSCRIPTION = 'change_subscription';
+
+  //= =====================
+  // Template Actions
+  //= =====================
+  export const CREATE_TEMPLATE = 'create_template',
+    FETCH_TEMPLATE = 'fetch_customer',
+    FETCH_TEMPLATES = 'fetch_customers',
+    TEMPLATE_ERROR = 'tempalte_error';

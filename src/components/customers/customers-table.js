@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import IconButton from 'material-ui/IconButton';
 import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
@@ -9,12 +8,6 @@ import EmailIcon from 'material-ui/svg-icons/Communication/email';
 class CustomersTable extends Component {
 
   render() {
-    console.log(this.props);
-    const componentStyle = {
-      backgroundColor: this.props.color || '#5BC0DE',
-      color: this.props.fontColor || '#FFF',
-    };
-
     return (
       <Table>
         <TableHeader>
@@ -30,7 +23,7 @@ class CustomersTable extends Component {
         {this.props.customers.map(company =>
           <TableRow key={company.id}>
             <TableRowColumn>{company.company_name}</TableRowColumn>
-            <TableRowColumn><Link to={`company.company_website`}>{company.company_website}</Link></TableRowColumn>
+            <TableRowColumn><a href={`company.company_website`}>{company.company_website}</a></TableRowColumn>
             <TableRowColumn>{company.contact_email}</TableRowColumn>
             <TableRowColumn>{company.contact_person}</TableRowColumn>
             <TableRowColumn className="action-column">
