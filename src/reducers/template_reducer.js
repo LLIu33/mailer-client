@@ -1,6 +1,6 @@
 import { CREATE_TEMPLATE, TEMPLATE_ERROR, FETCH_TEMPLATE, FETCH_TEMPLATES } from '../actions/types';
 
-const INITIAL_STATE = { error: '', tempalte: {}, tempaltes: [] };
+const INITIAL_STATE = { error: '', template: {}, templates: [] };
 
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {

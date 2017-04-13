@@ -9,7 +9,7 @@ import DeleteIcon from 'material-ui/svg-icons/action/delete';
 class TemplatesList extends Component {
   componentWillMount() {
     // Fetch inbox (conversations involving current user)
-    // this.props.fetchTemplates();
+    this.props.fetchTemplates();
   }
 
   render() {
@@ -23,15 +23,29 @@ class TemplatesList extends Component {
           </TableRow>
         </TableHeader>
         <TableBody>
-
+        {this.props.templates.map(template =>
+          <TableRow key={template.id}>
+            <TableRowColumn>{template.title}</TableRowColumn>
+            <TableRowColumn>{template.subject}</TableRowColumn>
+            <TableRowColumn className="action-column">
+              <IconButton>
+                <EditIcon />
+              </IconButton>
+              <IconButton>
+                <DeleteIcon />
+              </IconButton>
+            </TableRowColumn>
+          </TableRow>
+        )}
         </TableBody>
       </Table>
     );
   }
 }
-// function mapStateToProps(state) {
-//   return { templates: state.tempalte.templates };
-// }
-//
-// export default connect(mapStateToProps, { fetchTemplates })(TemplatesTable);
-export TemplatesList;
+
+function mapStateToProps(state) {
+  return { templates: state.template.templates };
+}
+
+export default connect(mapStateToProps, { fetchTemplates })(TemplatesList);
+// export default TemplatesList;

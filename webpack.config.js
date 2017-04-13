@@ -13,14 +13,17 @@ const config = {
     filename: 'bundle.js',
   },
   module: {
-    loaders: [{
+    rules: [{
       exclude: /node_modules/,
       test: /\.(js|jsx)$/,
-      loader: 'babel',
+      loader: 'babel-loader',
     },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('css!sass'),
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader']
+        }),
       }],
   },
   devServer: {
@@ -29,17 +32,19 @@ const config = {
   },
   plugins: [
     new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('production') } }),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: { warnings: false },
       output: { comments: false },
       mangle: false,
-      sourcemap: false,
-      minimize: true,
+      sourcemap: true,
       mangle: { except: ['$super', '$', 'exports', 'require', '$q', '$ocLazyLoad'] },
     }),
-    new ExtractTextPlugin('src/public/stylesheets/app.css', {
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      debug: true
+   }),
+    new ExtractTextPlugin({
+      filename: 'app.css',
       allChunks: true,
     }),
   ],

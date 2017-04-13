@@ -67,7 +67,6 @@ export function postData(action, errorType, isAuthReq, url, dispatch, data) {
 export function getData(action, errorType, isAuthReq, url, dispatch) {
   const requestUrl = API_URL + url;
   let headers = {};
-
   if (isAuthReq) {
     headers = { headers: { Authorization: cookie.load('token') } };
   }

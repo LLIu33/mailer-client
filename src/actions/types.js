@@ -44,6 +44,6 @@ export const CREATE_CUSTOMER = 'create_customer',
   // Template Actions
   //= =====================
   export const CREATE_TEMPLATE = 'create_template',
-    FETCH_TEMPLATE = 'fetch_customer',
-    FETCH_TEMPLATES = 'fetch_customers',
+    FETCH_TEMPLATE = 'fetch_template',
+    FETCH_TEMPLATES = 'fetch_templates',
     TEMPLATE_ERROR = 'tempalte_error';
