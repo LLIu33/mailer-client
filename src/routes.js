@@ -47,9 +47,6 @@ export default (
     <Route path="forgot-password" component={ForgotPassword} />
     <Route path="reset-password/:resetToken" component={ResetPassword} />
 
-    <Route path="checkout/:plan" component={RequireAuth(InitialCheckout)} />
-    <Route path="billing/settings" component={RequireAuth(BillingSettings)} />
-
     <Route path="profile" component={RequireAuth(ViewProfile)} />
     <Route path="templates" component={RequireAuth(TemplatesList)} />
 

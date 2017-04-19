@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 import cookie from 'react-cookie';
-import { API_URL, CLIENT_ROOT_URL, errorHandler } from './index';
+import { ROOT_URL, API_URL, CLIENT_ROOT_URL, errorHandler } from './index';
 import { AUTH_USER, AUTH_ERROR, UNAUTH_USER, FORGOT_PASSWORD_REQUEST, RESET_PASSWORD_REQUEST, PROTECTED_TEST } from './types';
 
 //= ===============================
@@ -11,7 +11,7 @@ import { AUTH_USER, AUTH_ERROR, UNAUTH_USER, FORGOT_PASSWORD_REQUEST, RESET_PASS
 // TO-DO: Add expiration to cookie
 export function loginUser({ email, password }) {
   return function (dispatch) {
-    axios.post(`${API_URL}/login`, { email, password })
+    axios.post(`${ROOT_URL}/login`, { email, password })
     .then((response) => {
       cookie.save('token', response.data.token, { path: '/' });
       cookie.save('user', response.data.user, { path: '/' });
@@ -26,7 +26,7 @@ export function loginUser({ email, password }) {
 
 export function registerUser({ email, userName, password }) {
   return function (dispatch) {
-    axios.post(`${API_URL}/register`, { email, userName, password })
+    axios.post(`${ROOT_URL}/register`, { email, userName, password })
     .then((response) => {
       cookie.save('token', response.data.token, { path: '/' });
       cookie.save('user', response.data.user, { path: '/' });
@@ -52,7 +52,7 @@ export function logoutUser(error) {
 
 export function getForgotPasswordToken({ email }) {
   return function (dispatch) {
-    axios.post(`${API_URL}/auth/forgot-password`, { email })
+    axios.post(`${ROOT_URL}/forgot`, { email })
     .then((response) => {
       dispatch({
         type: FORGOT_PASSWORD_REQUEST,
@@ -67,7 +67,7 @@ export function getForgotPasswordToken({ email }) {
 
 export function resetPassword(token, { password }) {
   return function (dispatch) {
-    axios.post(`${API_URL}/auth/reset-password/${token}`, { password })
+    axios.post(`${ROOT_URL}/reset/${token}`, { password })
     .then((response) => {
       dispatch({
         type: RESET_PASSWORD_REQUEST,
@@ -75,23 +75,6 @@ export function resetPassword(token, { password }) {
       });
       // Redirect to login page on successful password reset
       browserHistory.push('/login');
-    })
-    .catch((error) => {
-      errorHandler(dispatch, error.response, AUTH_ERROR);
-    });
-  };
-}
-
-export function protectedTest() {
-  return function (dispatch) {
-    axios.get(`${API_URL}/protected`, {
-      headers: { Authorization: cookie.load('token') },
-    })
-    .then((response) => {+
-      dispatch({
-        type: PROTECTED_TEST,
-        payload: response.data.content,
-      });
     })
     .catch((error) => {
       errorHandler(dispatch, error.response, AUTH_ERROR);

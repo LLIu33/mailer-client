@@ -2,7 +2,8 @@ import axios from 'axios';
 import cookie from 'react-cookie';
 import { logoutUser } from './auth';
 import { STATIC_ERROR, FETCH_USER } from './types';
-export const API_URL = 'http://localhost:5000/api';
+export const ROOT_URL = 'http://localhost:5000';
+export const API_URL = ROOT_URL + '/api';
 export const CLIENT_ROOT_URL = 'http://localhost:3000';
 
 //= ===============================
@@ -12,7 +13,7 @@ export const CLIENT_ROOT_URL = 'http://localhost:3000';
 export function fetchUser(uid) {
   return function (dispatch) {
     axios.get(`${API_URL}/user/${uid}`, {
-      headers: { Authorization: cookie.load('token') },
+      headers: { "x-access-token": cookie.load('token') },
     })
     .then((response) => {
       dispatch({
@@ -48,7 +49,7 @@ export function postData(action, errorType, isAuthReq, url, dispatch, data) {
   let headers = {};
 
   if (isAuthReq) {
-    headers = { headers: { Authorization: cookie.load('token') } };
+    headers = { headers: { "x-access-token": cookie.load('token') } };
   }
 
   axios.post(requestUrl, data, headers)
@@ -65,10 +66,11 @@ export function postData(action, errorType, isAuthReq, url, dispatch, data) {
 
 // Get Request
 export function getData(action, errorType, isAuthReq, url, dispatch) {
+  axios.defaults.headers.common['x-access-token'] = cookie.load('token');
   const requestUrl = API_URL + url;
   let headers = {};
   if (isAuthReq) {
-    headers = { headers: { Authorization: cookie.load('token') } };
+    headers = { headers: { "x-access-token": cookie.load('token') } };
   }
 
   axios.get(requestUrl, headers)
@@ -89,7 +91,7 @@ export function putData(action, errorType, isAuthReq, url, dispatch, data) {
   let headers = {};
 
   if (isAuthReq) {
-    headers = { headers: { Authorization: cookie.load('token') } };
+    headers = { headers: { "x-access-token": cookie.load('token') } };
   }
 
   axios.put(requestUrl, data, headers)
@@ -110,7 +112,7 @@ export function deleteData(action, errorType, isAuthReq, url, dispatch) {
   let headers = {};
 
   if (isAuthReq) {
-    headers = { headers: { Authorization: cookie.load('token') } };
+    headers = { headers: { "x-access-token": cookie.load('token') } };
   }
 
   axios.delete(requestUrl, headers)
