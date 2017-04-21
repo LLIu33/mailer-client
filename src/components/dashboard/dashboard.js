@@ -8,7 +8,6 @@ import CustomersTable from '../customers/customers-table';
 
 class Dashboard extends Component {
   componentWillMount() {
-    // Fetch inbox (conversations involving current user)
     this.props.fetchCustomers();
   }
 

@@ -23,11 +23,11 @@ class CustomersTable extends Component {
         {this.props.customers.map(company =>
           <TableRow key={company.id}>
             <TableRowColumn>{company.company_name}</TableRowColumn>
-            <TableRowColumn><a href={`company.company_website`}>{company.company_website}</a></TableRowColumn>
+            <TableRowColumn><a href={`${company.company_website}`}>{company.company_website}</a></TableRowColumn>
             <TableRowColumn>{company.contact_email}</TableRowColumn>
             <TableRowColumn>{company.contact_person}</TableRowColumn>
             <TableRowColumn className="action-column">
-              <IconButton>
+              <IconButton href={`/customers/${company.id}`}>
                 <EditIcon />
               </IconButton>
               <IconButton>

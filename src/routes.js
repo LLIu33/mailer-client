@@ -20,6 +20,7 @@ import ResetPassword from './components/auth/reset_password';
 // Import dashboard pages
 import Dashboard from './components/dashboard/dashboard';
 import ViewProfile from './components/dashboard/profile/view-profile';
+import CustomerItem from './components/customers/customer-item';
 // import Inbox from './components/dashboard/messaging/inbox';
 // import Conversation from './components/dashboard/messaging/conversation';
 // import ComposeMessage from './components/dashboard/messaging/compose-message';
@@ -49,12 +50,12 @@ export default (
 
     <Route path="profile" component={RequireAuth(ViewProfile)} />
     <Route path="templates" component={RequireAuth(TemplatesList)} />
+    <Route path="templates/:id" component={RequireAuth(TemplatesList)} />
 
     <Route path="admin" component={RequireAuth(AdminDashboard)} />
 
-    <Route path="dashboard">
-      <IndexRoute component={RequireAuth(Dashboard)} />
-    </Route>
+    <Route path="customers" component={RequireAuth(Dashboard)} />
+    <Route path="customers/:id" component={RequireAuth(CustomerItem)} />
 
     <Route path="*" component={NotFoundPage} />
   </Route>
